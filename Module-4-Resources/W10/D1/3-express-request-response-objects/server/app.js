@@ -10,8 +10,10 @@ app.use(express.json());
  *     Route: /version
  *     Response (Text): "1.0.0"
  */
-// Your code here 
-
+// Your code here
+app.get('/version', (res, req) => {
+    res.setEncoding("1.0.0");
+});
 /**
  *  Basic Phase 2 - Route param and JSON response
  *      Method: GET
@@ -28,7 +30,19 @@ app.use(express.json());
  *  Hint: Use your name, birth date and favorite movies (as strings in the code)
  *  combined with the id sent as a route parameter in the url
  */
-// Your code here 
+// Your code here
+app.get('/veiwers/:id', (req, res) => {
+    const id = req.params.id;
+    const user = {
+        id,
+        firstName: "Shane",
+        lastName: "Wilkey",
+        birthday: "02/25/1982",
+        favoriteMovies: ["Dracula", "Pootie Tang"]
+    }
+
+    res.json(user)
+});
 
 /** Basic Phase 3 - Query params in URL
  *      Method: GET
@@ -47,7 +61,14 @@ app.use(express.json());
  *          message required
  *          message required
  */
-// Your code here 
+// Your code here
+app.get('/info', (req, res) => {
+    if (!req.query.message) {
+        res.send("message required");
+    } else {
+        res.send(req.query.message);
+    }
+});
 
 /**
  *  IMPORTANT: Scroll to the top for basic phases.
@@ -81,7 +102,7 @@ app.use(express.json());
  *      Alternate response object:
  *          { "id": 98765432, "name": "Honey Sweet", "year": 1967, "isFavorite": false }
  */
-// Your code here 
+// Your code here
 
 /**
  *  Advanced Bonus Phase B - Research how to return static
@@ -98,7 +119,7 @@ app.use(express.json());
  *
  *      Test route: /logo.png
  */
-// Your code here 
+// Your code here
 
 // DO NOT EDIT - Set port and listener
 if (require.main === module) {
