@@ -12,3 +12,5 @@ VALUES ('Amy', 'Pond'),
        ('Martha', 'Jones'),
        ('Donna', 'Noble'),
        ('River', 'Song');
+INSERT INTO friends (first_name, last_name)
+VALUES ('Jenny', 'Who');
