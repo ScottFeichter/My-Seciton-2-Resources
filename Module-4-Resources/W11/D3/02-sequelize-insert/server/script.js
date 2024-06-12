@@ -9,8 +9,20 @@ const build = async () => {
     // weightLbs: 38
     // breed: Brittany Spaniel
     // microchipped: false
-    // Your code here 
+    // Your code here
 
+  const newPuppy = Puppy.build({
+    name: "Trudy",
+    ageYrs: 2,
+    weightLbs: 38,
+    breed: "Brittany Spaniel",
+    microchipped: false
+})
+
+// await newPuppy.validate();
+  await Puppy.findOne({ where: { name: "Trudy" } });
+  await newPuppy.save();
+  await Puppy.findOne({ where: { name: "Trudy" } });
 
   } catch (err) {
     throw err;
@@ -29,8 +41,17 @@ const create = async () => {
     // weightLbs: 42
     // breed: Bulldog
     // microchipped: true
-    // Your code here 
+    // Your code here
+    const newPuppy = await Puppy.create({
+      name: "Beans",
+      ageYrs: 1.6,
+      weightLbs: 42,
+      breed: "Bulldog",
+      microchipped: true
+    });
 
+
+    await Puppy.findOne({ where: { name: "Beans" } });
 
   } catch (err) {
     throw err;
