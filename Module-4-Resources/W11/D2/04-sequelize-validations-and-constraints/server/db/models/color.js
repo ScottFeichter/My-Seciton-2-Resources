@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Color extends Model {
     /**
@@ -12,15 +10,26 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
     }
-  };
-  Color.init({
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
+  }
+  Color.init(
+    {
+      name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [2, 10],
+          endsInY(value) {
+            if (value[value.length - 1] === "y") {
+              throw new Error('name must not end in \'y\'');
+            }
+          },
+        },
+      },
+    },
+    {
+      sequelize,
+      modelName: "Color",
     }
-  }, {
-    sequelize,
-    modelName: 'Color',
-  });
+  );
   return Color;
 };
