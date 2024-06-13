@@ -19,10 +19,10 @@ const build = async () => {
     microchipped: false
 })
 
-// await newPuppy.validate();
-  await Puppy.findOne({ where: { name: "Trudy" } });
+  // await newPuppy.validate();
+  // await Puppy.findOne({ where: { name: "Trudy" } });
   await newPuppy.save();
-  await Puppy.findOne({ where: { name: "Trudy" } });
+  // await Puppy.findOne({ where: { name: "Trudy" } });
 
   } catch (err) {
     throw err;
@@ -51,7 +51,7 @@ const create = async () => {
     });
 
 
-    await Puppy.findOne({ where: { name: "Beans" } });
+    // await Puppy.findOne({ where: { name: "Beans" } });
 
   } catch (err) {
     throw err;
