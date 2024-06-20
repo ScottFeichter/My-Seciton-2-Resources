@@ -28,7 +28,7 @@ const createProfilePicture = (user) => {
   tweetIcon.classList.add("fa");
   tweetIcon.classList.add(iconType);
   tweetIcon.setAttribute("aria-hidden", "true");
-  
+
   const profilePicture = document.createElement("a");
   profilePicture.classList.add("user-profile-image");
   profilePicture.setAttribute("href", "/" + username);
@@ -41,7 +41,7 @@ const createProfilePicture = (user) => {
 const createTweetHeader = (tweet) => {
   const tweetHeader = document.createElement("div");
   tweetHeader.classList.add("tweet-header");
-  
+
   const username = tweet.User.username;
   const tweetAuthor = document.createElement("a");
   tweetAuthor.classList.add("tweet-author");
@@ -73,12 +73,12 @@ const createTweetBody = (tweet) => {
   tweetBody.classList.add("tweet-body");
 
   /* ------------------------- Prevent XSS Attacks ------------------------ */
-  // const bodyText = document.createTextNode(tweet.body);
-  // tweetBody.appendChild(bodyText);
+  const bodyText = document.createTextNode(tweet.body);
+  tweetBody.appendChild(bodyText);
   /* ---------------------------------------------------------------------- */
 
   /* -------------------------- Allow XSS Attacks ------------------------- */
-  tweetBody.innerHTML = tweet.body;
+  // tweetBody.innerHTML = tweet.body;
   /* ---------------------------------------------------------------------- */
 
   return tweetBody;
