@@ -18,9 +18,57 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     type: DataTypes.STRING,
     storeId: DataTypes.INTEGER
-  }, {
+  },
+  {
     sequelize,
     modelName: 'Instrument',
+    defaultScope: {
+      attributes: {
+        exclude: ["createdAt", "updatedAt"]
+      }
+    },
+    scopes: {
+      keyboard: {
+        where: {
+          type: "keyboard"
+        },
+        attributes: {
+          exclude: ["createdAt", "updatedAt"]
+        }
+      },
+      string: {
+        where: {
+          type: "string"
+        },
+        attributes: {
+          exclude: ["createdAt", "updatedAt"]
+        }
+      },
+      woodwind: {
+        where: {
+          type: "woodwind"
+        },
+        attributes: {
+          exclude: ["createdAt", "updatedAt"]
+        }
+      },
+      storeIdAndOrder: (storeId) => ({
+        where: {
+          storeId: storeId
+        },
+        order: [['name', 'ASC']],
+        attributes: {
+          exclude: ['createdAt', 'updatedAt']
+        },
+        include: [
+          {
+            model: sequelize.models.Store,
+            attributes: ["id", "name", "location"],
+          }
+        ]
+      })
+    }
+
   });
   return Instrument;
 };
